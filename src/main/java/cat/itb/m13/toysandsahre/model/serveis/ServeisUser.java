@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service
@@ -36,5 +37,13 @@ public class ServeisUser {
             userRepository.deleteById(id);
         }
         return user;
+    }
+
+    public Users consultarPerUsername(String name) {
+        return userRepository.findByUsername(name).orElse(null);
+    }
+
+    public Users consultarPerId(Long id){
+        return userRepository.findById(Math.toIntExact(id)).orElse(null);
     }
 }
